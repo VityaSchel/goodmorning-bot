@@ -1,2 +1,9 @@
 .env
 node_modules
+config/bot.json
+config/pictures.txt
+config/used.txt
+tmp_picture
+tmp_picture.gif
+tmp_picture.jpeg
+tmp_picture.png
