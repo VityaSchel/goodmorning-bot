@@ -1,6 +1,6 @@
 {
   "name": "goodmorning-bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Бот, который присылает открытку с otkritkiok каждое утро в 7:00 по времени сервера, кроме воскресенья и каникул.",
   "main": "index.js",
   "type": "module",
