@@ -1,1 +1,2 @@
-vk_access_token
+.env
+node_modules
