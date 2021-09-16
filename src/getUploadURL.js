@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import readConfig from 'src/readConfig.js'
+import readConfig from './readConfig.js'
 
 export default async function getUploadURL(isGif) {
   const peerId = readConfig().vkPeerID
@@ -20,8 +20,8 @@ export default async function getUploadURL(isGif) {
   try {
     uploadUrl = uploadURLResponse.response.upload_url
   } catch (e) {
-    throw `An error occured while trying to access upload_url field in response. Response: ${uploadURLResponse}`
+    throw `An error occured while trying to access upload_url field in response. Response: ${JSON.stringify(uploadURLResponse)}`
   }
-  
+
   return uploadUrl
 }

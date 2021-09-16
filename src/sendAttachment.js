@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import readConfig from 'src/readConfig.js'
+import readConfig from './readConfig.js'
 
 export default async function sendAttachment(attachment) {
   const peerId = readConfig().vkPeerID

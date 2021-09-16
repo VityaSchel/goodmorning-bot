@@ -1,12 +1,13 @@
 import FormData from 'form-data'
-import fs from 'fs'
+import * as fs from 'fs'
 import fetch from 'node-fetch'
 
 export default async function uploadFileToVK(uploadURL, filename, isGif) {
   const accessToken = process.env.VK_API_ACCESS_TOKEN
-  
+
   const formData = new FormData()
   formData.append(isGif ? 'file' : 'photo', fs.createReadStream(filename))
+
 
   const fileUploadResponseRaw = await fetch(uploadURL, { method: 'POST', body: formData })
   const fileUploadResponse = await fileUploadResponseRaw.json()
@@ -16,13 +17,15 @@ export default async function uploadFileToVK(uploadURL, filename, isGif) {
 
   let attachmentSaveResponseRaw = await fetch(isGif ? docsSave : photosSave)
   let attachmentSaveResponse = await attachmentSaveResponseRaw.json()
-  let result
+  let result, ownerID, attachmentID
   try {
-    result = attachmentSaveResponse.response[0]
+    result = isGif ? attachmentSaveResponse.response.doc : attachmentSaveResponse.response[0]
+    ownerID = result.owner_id
+    attachmentID = result.id
   } catch(e) {
-    throw 'An error occured while trying to access attachment field in response. Response: ${attachmentSaveResponse}'
+    throw `An error occured while trying to access attachment field in response. Response: ${JSON.stringify(attachmentSaveResponse)}`
   }
 
-  const attachment = `${isGif ? 'doc' : 'photo'}${result.owner_id}_${result.id}`
+  const attachment = `${isGif ? 'doc' : 'photo'}${ownerID}_${attachmentID}`
   return attachment
 }

@@ -7,7 +7,7 @@ export default function readConfig() {
     const [key, val] = line.split('=')
     process.env[key] = val
   })
-  let botConfig = fs.readFileSync(`${workDir}/config.json`, 'utf-8')
+  let botConfig = fs.readFileSync(`${workDir}/config/bot.json`, 'utf-8')
   try {
     botConfig = JSON.parse(botConfig)
   } catch(e) {
