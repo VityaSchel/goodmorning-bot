@@ -4,7 +4,13 @@
 ## Установка
 
 ```
-$ npm install goodmorning-bot
+git clone git@github.com:VityaSchel/goodmorning-bot.git
+```
+
+затем
+
+```
+npm i
 ```
 
 ## Использование
@@ -23,6 +29,7 @@ VK_API_ACCESS_TOKEN=5owvnyk7cppug1gtdo6nbl8lf21gqnrjqbvntiovhvpphpkxrm6lqh7llqak
 
 ## Запуск
 
+Для теста:
 ```
 node index.js
 ```
