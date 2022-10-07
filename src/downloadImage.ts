@@ -20,7 +20,7 @@ export default async function downloadImage(url: string) {
   if(!(contentTypeHeader in mimeTypesToExtension)) throw 'Unknown mime type'
   const contentType: keyof typeof mimeTypesToExtension = contentTypeHeader as keyof typeof mimeTypesToExtension
   const isGif = contentType === 'image/gif'
-  const filename = __dirname + `/tmp_picture.${mimeTypesToExtension[contentType]}`
+  const filename = __dirname + `../tmp_picture.${mimeTypesToExtension[contentType]}`
 
   const buffer = await response.buffer()
   await fs.writeFile(filename, buffer)

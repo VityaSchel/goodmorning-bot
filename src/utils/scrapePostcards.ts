@@ -1,18 +1,20 @@
 import fetch from 'node-fetch'
 
 const apiURL = 'https://api.otkritkiok.ru/v0/postcards/get-by'
-async function scrape(start, iterations) {
+async function scrape(start: number, iterations: number) {
+  const limit = 50
   for (let i = 0; i < iterations; i++) {
     const query = new URLSearchParams({
       fullSlug: 'ejednevnie/dobroe-utro',
-      page: i,
-      limit: 50
+      page: String(i),
+      limit: String(limit)
     })
-    let responseRaw = await fetch(`${apiURL}?${query}`, {
+    const responseRaw = await fetch(`${apiURL}?${query}`, {
       headers: {'token': 'ookgroup'}
     })
-    let response = await responseRaw.json()
-    let postcards = response.data.postcards.map(postcard => `https://cdn.otkritkiok.ru/posts/big/${postcard.image}`)
+    type OtkritkiOkResponse = { data: { postcards: { image: string }[] } }
+    const response = await responseRaw.json() as OtkritkiOkResponse
+    const postcards = response.data.postcards.map(postcard => `https://cdn.otkritkiok.ru/posts/big/${postcard.image}`)
     console.log(postcards.join('\n'))
   }
 }

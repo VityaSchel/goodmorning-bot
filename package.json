@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node out/index",
+    "prebuild": "del out/",
+    "build": "ttsc",
+    "postbuild": "cpy '**/*' '!**/*.ts' '../out' --cwd=src --no-overwrite --parents"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,10 @@
     "@types/node": "^18.8.3",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
-    "eslint": "^7.32.0"
+    "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
+    "cpy-cli": "^3.1.1",
+    "del-cli": "^4.0.1",
+    "eslint": "^7.32.0",
+    "ttypescript": "^1.5.13"
   }
 }

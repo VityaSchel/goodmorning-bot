@@ -19,12 +19,13 @@ function readFirstPicture() {
   const picturesLinks = picturesList.split(/\n/g).filter(String)
 
   const usedLink = picturesLinks.shift()
+  if(!usedLink) throw 'No more pictures left in config/pictures.txt!'
   shiftLinksInFiles(usedLink, picturesLinks)
 
   return usedLink
 }
 
-function shiftLinksInFiles(usedLink, picturesLinks) {
-  fs.writeFileSync(`${workDir}/config/pictures.txt`, picturesLinks.join('\n'))
-  if(!readConfig().removeUsed) fs.appendFileSync(`${workDir}/config/used.txt`, `${usedLink}\n`)
+function shiftLinksInFiles(usedLink: string, picturesLinks: string[]) {
+  fs.writeFileSync(__dirname + '../config/pictures.txt', picturesLinks.join('\n'))
+  if(!readConfig().removeUsed) fs.appendFileSync(__dirname + '../config/used.txt', usedLink + '\n')
 }
