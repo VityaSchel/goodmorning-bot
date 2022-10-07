@@ -3,6 +3,8 @@ import readConfig from './readConfig.js'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
+const source = process.argv[2]
+
 const __dirname = dirname(fileURLToPath(import.meta.url)) + '/'
 
 export default function getPicture() {
@@ -15,7 +17,7 @@ export default function getPicture() {
 }
 
 function readFirstPicture() {
-  const picturesList = fs.readFileSync(__dirname + '../config/pictures.txt', 'utf-8')
+  const picturesList = fs.readFileSync(`${__dirname}../config/pictures_${source}.txt`, 'utf-8')
   const picturesLinks = picturesList.split(/\n/g).filter(String)
 
   const usedLink = picturesLinks.shift()
@@ -26,6 +28,6 @@ function readFirstPicture() {
 }
 
 function shiftLinksInFiles(usedLink: string, picturesLinks: string[]) {
-  fs.writeFileSync(__dirname + '../config/pictures.txt', picturesLinks.join('\n'))
-  if(!readConfig().removeUsed) fs.appendFileSync(__dirname + '../config/used.txt', usedLink + '\n')
+  fs.writeFileSync(`${__dirname}../config/pictures_${source}.txt`, picturesLinks.join('\n'))
+  if(!readConfig().removeUsed) fs.appendFileSync(`${__dirname}../config/used_${source}.txt`, usedLink + '\n')
 }

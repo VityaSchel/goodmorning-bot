@@ -5,7 +5,7 @@ async function scrape(start: number, iterations: number) {
   const limit = 50
   for (let i = 0; i < iterations; i++) {
     const query = new URLSearchParams({
-      fullSlug: 'ejednevnie/dobroe-utro',
+      fullSlug: process.argv[2],
       page: String(i),
       limit: String(limit)
     })

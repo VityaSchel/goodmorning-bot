@@ -1,8 +1,8 @@
 .env
 node_modules
 config/bot.json
-config/pictures.txt
-config/used.txt
+config/pictures_*.txt
+config/used_*.txt
 tmp_picture.jpg
 tmp_picture.png
 tmp_picture.gif
