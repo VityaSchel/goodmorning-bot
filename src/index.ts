@@ -1,10 +1,11 @@
+import './.env'
 import fs from 'fs/promises'
-import readConfig from './src/readConfig.js'
-import getPicture from './src/getPicture.js'
-import downloadImage from './src/downloadImage.js'
-import getUploadURL from './src/getUploadURL.js'
-import uploadFileToVK from './src/uploadFileToVK.js'
-import sendAttachment from './src/sendAttachment.js'
+import readConfig from './readConfig'
+import getPicture from './getPicture'
+import downloadImage from './downloadImage'
+import getUploadURL from './getUploadURL'
+import uploadFileToVK from './uploadFileToVK'
+import sendAttachment from './sendAttachment'
 
 const config = readConfig()
 if(config.paused) {

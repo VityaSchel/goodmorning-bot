@@ -1,15 +1,20 @@
 module.exports = {
-  'parser': '@babel/eslint-parser',
   'env': {
     'es2021': true,
     'node': true
   },
-  'extends': 'eslint:recommended',
+  'extends': [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
-    'ecmaVersion': 2021,
-    'sourceType': 'module',
-    'requireConfigFile': false,
+    'ecmaVersion': 'latest',
+    'sourceType': 'module'
   },
+  'plugins': [
+    '@typescript-eslint'
+  ],
   'rules': {
     'indent': [
       'error',

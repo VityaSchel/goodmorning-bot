@@ -1,6 +1,9 @@
 import * as fs from 'fs'
-import workDir from './workDir.js'
 import readConfig from './readConfig.js'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url)) + '/'
 
 export default function getPicture() {
   const fixedImage = readConfig().fixedImage
@@ -12,7 +15,7 @@ export default function getPicture() {
 }
 
 function readFirstPicture() {
-  const picturesList = fs.readFileSync(`${workDir}/config/pictures.txt`, 'utf-8')
+  const picturesList = fs.readFileSync(__dirname + '../config/pictures.txt', 'utf-8')
   const picturesLinks = picturesList.split(/\n/g).filter(String)
 
   const usedLink = picturesLinks.shift()
